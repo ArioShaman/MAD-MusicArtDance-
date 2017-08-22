@@ -1,0 +1,27 @@
+html ng-app="app"
+  head
+    title Blog
+    base href="/"
+    = stylesheet_link_tag 'application'
+    link href="https://fonts.googleapis.com/css?family=Passion+One" rel="stylesheet"
+
+    <script type="text/javascript" href="lib/amcharts/dist/amcharts/amcharts.js"></script>
+
+    
+
+    <script type="text/javascript" href="lib/amcharts/dist/amcharts/serial.js"></script>
+    // amChartsDirective
+
+    <script type="text/javascript" href="lib/amcharts/dist/amcharts/black.js"></script>
+    
+    <script type="text/javascript" href="lib/amcharts-angular/dist/amChartsDirective.js"></script>
+  body
+    div.main
+      div.blue-nav
+        div.logo 
+          span M
+          span.pink-font-01 A
+          span D
+        
+      ui-view
+      = javascript_include_tag 'application'

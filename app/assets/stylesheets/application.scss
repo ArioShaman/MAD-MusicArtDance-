@@ -1,0 +1,38 @@
+/*
+ *= require oxymoron/ng-notify
+ *= require_self
+ *= require countries
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.rails-errors {
+  color: red;
+  font-size: 12px;
+}
+.main{
+	width: 100%;
+	height: calc(100% - 50px);
+	position: absolute;
+}
+.blue-nav{
+	height: 50px;
+	width: 100%;
+	background-color: #292C42;
+	position: relative;
+	z-index: 100;
+	width: 100%;
+}
+.logo{
+	font-family: 'Passion One', cursive;
+	color: white;
+	font-size: 40px;
+	text-align: center;
+}
+.logo >span{
+	color: #7C1F7C;
+}
+.pink-font-01{
+	color: #CD0074 !important;
+}
