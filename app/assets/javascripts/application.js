@@ -11,6 +11,7 @@
 = require jquery_ujs
 = require script
 = require ammap
+= require jquery-ui
 = require worldLow
 = require_tree ./controllers
 */

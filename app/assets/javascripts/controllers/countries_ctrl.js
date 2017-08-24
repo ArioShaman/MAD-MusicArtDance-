@@ -2,10 +2,10 @@ app.controller('CountriesCtrl', ['Country', 'action','$scope', function (Country
     var ctrl = this;
     // Код отработает только для  '/posts'
     action('index', function(){
-      ctrl.countries = Country.query();
-      //AmCharts.theme = AmCharts.themes.black;
-      //console.log(AmCharts.theme);     
-      $scope.selectCont;// = "text";
+      $scope.countries = Country.query();
+      console.log($scope.countries);
+      $scope.selectCont;
+      $scope.selectIs = false;
       var map = AmCharts.makeChart("mapdiv", {
         "type": "map",
         "theme":"black",
@@ -29,50 +29,94 @@ app.controller('CountriesCtrl', ['Country', 'action','$scope', function (Country
             console.log(event.mapObject.title);
             $scope.$apply(function() {
               $scope.selectCont = event.mapObject.title;
+              $scope.selectIs = true;
             });
-            //$scope.selectCont = event.mapObject.title;
           }
         }],
 
         smallMap: {}
       });
+
+
       $('#mapdiv').click(function(event){
         console.log($scope.selectCont);
       });
 
-        
+      
       clickL = false;
       $('.l-slide-btn').click(function(){
-        $(".in-left").toggleClass('open'); 
+        $(".in-left").toggleClass('open');
         clickL = !clickL;
-        if(clickL == false){
-          var px2 = 30;
-          
-        }else{
-            var px2 = 15;
-            if(clickR == true){
-              var px2 = 0;
-            }
-        };
 
-        $('.my-container').css('width','calc(100% - ' + $('.in-right').width() +'px - '+ $('.in-left').width() +'px - '+px2+'px)');
+        $('.my-container').css('width','calc(100% - ' + ($('.in-left').width() + 15) +'px)');
       });
-
-      clickR = false;
-      $('.r-slide-btn').click(function(){
-        $(".in-right").toggleClass('open'); 
-        clickR = !clickR;
-        if(clickR == false){
-          var px = 30;
+      
+      $( "#slider" ).slider({
+        value : 2017,//Значение, которое будет выставлено слайдеру при загрузке
+        min : 1964,//Минимально возможное значение на ползунке
+        max : 2017,//Максимально возможное значение на ползунке
+        step : 1,//Шаг, с которым будет двигаться ползунок
+        create: function( event, ui ) {
+          val = $( "#slider" ).slider("value");//При создании слайдера, получаем его значение в перемен. val
+            $( "#contentSlider" ).html( val );//Заполняем этим значением элемент с id contentSlider
+          },
+          slide: function( event, ui ) {
+              $( "#contentSlider" ).html( ui.value );//При изменении значения ползунка заполняем элемент с id contentSlider
+          }
+      });
+      /*$( "#slider2" ).slider({
+        value : 1,
+        min : 0,
+        max : 10,
+        step : 1,
+        create: function( event, ui ) {
+          val = $( "#slider2" ).slider("value");//При создании слайдера, получаем его значение в перемен. val
+            consile.log( val );//Заполняем этим значением элемент с id contentSlider
+          },
+          slide: function( event, ui ) {
+              console.log( ui.value );//При изменении значения ползунка заполняем элемент с id contentSlider
+          }
+      });*/
+      $scope.click = false;
+      $scope.clicker = function(){
+        $scope.click = !$scope.click;
+        if($scope.click == true){
+          console.log($('.m-hidden'));
+        };
+        $('.hid').toggleClass('hidden');
+        $('.pause').toggleClass('un-pause');
+        console.log('click');
+      };
+      $scope.song;
+      console.log(typeof($scope.song));
+      var sing;
+      $scope.play = function(url,singName){
+        console.log(singName);
+        if(sing != singName){
+          $scope.song = new Audio(url);
+          console.log('false');
+          $scope.song.play();
+          sing = singName;
         }else{
-          var px = 15;
+          console.log('true');
+          $scope.song.play();
         }
         
-        $('.my-container').css('width','calc(100% - ' + $('.in-right').width() +'px - '+ $('.in-left').width() +'px - '+px+'px)');
-        
-      });
+      };
 
+      $scope.pause = function(url){
+        console.log('pause');
+        $scope.song.pause();
+      };
 
+      play = $('#play');
+      pause = $('#pause');
+      close = $('#close');
+      //song = new Audio('http://ol3.mp3party.net/online/2596/2596384.mp3');
+      //duration = song.duration;
+      //song.type= 'audio/mpeg';
+      //song.src= 'http://ol3.mp3party.net/online/2596/2596384.mp3';
+      //song.play()
     });
 
     // Вызовется для паттерна '/posts/:id'

@@ -5,7 +5,7 @@ class CreateCountries < ActiveRecord::Migration
     	t.string :sing_name
     	t.string :cover
     	t.string :autor
-    	t.string :audio_link
+    	t.string :url
     	t.string :genre
     	t.string :country
     	t.float :raiting

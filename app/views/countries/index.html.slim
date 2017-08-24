@@ -2,22 +2,62 @@ div#main
 
   div.left_bar
     div.in-left
+      div.left-cont
+        div.user-inf-cont
+          div.ava-cont
+          div.name Guest
+
+        div.select-bl
+          div.sel Вы выбрали :
+          div.sel2 ng-if="selectIs == false" None
+
+          div.sel ng-if="selectIs == true" ng-bind="selectCont"
+
+        div.years-cont
+          div#slider
+          div#contentSlider
+          
+
+        div.playlist-cont#scroll
+          div ng-repeat="country in countries"
+            div.audio-cont
+              div.cover 
+                img ng-src="{{country.cover}}"
+
+              div.audio-inf 
+                div.autor
+                  div Autor: {{country.autor}}
+
+                div.sing-name-bl
+                  div "{{country.sing_name}}"
+                
+                <div class="sing" id="{{country.id}}">
+                    div.play#play ng-click="play(country.url, country.sing_name)" Play
+                    div.play#pause ng-click="pause(country.url)" Pause
+                    div.pause#pause Pause
+                    div#slider2
+                </div>
+            div.audio-cont
+            div.audio-cont
+            div.audio-cont
+            div.audio-cont
+            div.audio-cont
+            div.audio-cont
+            div.audio-cont
+            div.audio-cont
+
     div.l-slide-btn
       div.slide-shadow
 
   div.my-container
     div.empty
-      <div id="mapdiv" ></div>
+      div#mapdiv
         
 
 
     div.selected
       div ng-bind="selectCont"
-  div.right_bar
-    div.in-right
-    div.r-slide-btn
-      div.slide-shadow
-
+  
   
 
 
