@@ -1,9 +1,9 @@
 app.controller('CountriesCtrl', ['Country', 'action','$scope', function (Country, action, $scope) {
     var ctrl = this;
-    // Код отработает только для  '/posts'
     action('index', function(){
       $scope.countries = Country.query();
       console.log($scope.countries);
+      
       $scope.selectCont;
       $scope.selectIs = false;
       var map = AmCharts.makeChart("mapdiv", {
@@ -64,20 +64,9 @@ app.controller('CountriesCtrl', ['Country', 'action','$scope', function (Country
               $( "#contentSlider" ).html( ui.value );//При изменении значения ползунка заполняем элемент с id contentSlider
           }
       });
-      /*$( "#slider2" ).slider({
-        value : 1,
-        min : 0,
-        max : 10,
-        step : 1,
-        create: function( event, ui ) {
-          val = $( "#slider2" ).slider("value");//При создании слайдера, получаем его значение в перемен. val
-            consile.log( val );//Заполняем этим значением элемент с id contentSlider
-          },
-          slide: function( event, ui ) {
-              console.log( ui.value );//При изменении значения ползунка заполняем элемент с id contentSlider
-          }
-      });*/
+
       $scope.click = false;
+
       $scope.clicker = function(){
         $scope.click = !$scope.click;
         if($scope.click == true){
@@ -87,36 +76,44 @@ app.controller('CountriesCtrl', ['Country', 'action','$scope', function (Country
         $('.pause').toggleClass('un-pause');
         console.log('click');
       };
-      $scope.song;
-      console.log(typeof($scope.song));
+      $scope.song = new Audio();
       var sing;
+      $scope.pauseBtn = false;
+
       $scope.play = function(url,singName){
         console.log(singName);
         if(sing != singName){
-          $scope.song = new Audio(url);
-          console.log('false');
+          $scope.song.src = url;
+          $scope.song.controls = true
           $scope.song.play();
           sing = singName;
+          //$scope.song.addEventListener('loadedmetadata', function() {
+            //console.log("Playing " + $scope.song.src + ", for: " + $scope.song.duration + "seconds.");
+            //$scope.long.dur = $scope.song.duration;
+            //console.log($scope.song.duration);
+          //});
+          //$('#show').attr('max') = $scope.song.duration;
         }else{
-          console.log('true');
           $scope.song.play();
-        }
-        
+        };
+        console.log($scope.song.duration);
+        console.log('play');
+        $scope.pauseBtn = true;
       };
 
       $scope.pause = function(url){
+        console.log($scope.song.duration);
         console.log('pause');
         $scope.song.pause();
+        $scope.pauseBtn = false;
+        console.log($scope.song.duration);
       };
 
-      play = $('#play');
-      pause = $('#pause');
-      close = $('#close');
-      //song = new Audio('http://ol3.mp3party.net/online/2596/2596384.mp3');
-      //duration = song.duration;
-      //song.type= 'audio/mpeg';
-      //song.src= 'http://ol3.mp3party.net/online/2596/2596384.mp3';
-      //song.play()
+      ctrl.line;
+      $scope.linebar = function(item){
+        //console.log(ctrl.line);
+        //console.log($('#show').attr('max'));
+        };
     });
 
     // Вызовется для паттерна '/posts/:id'
@@ -131,14 +128,11 @@ app.controller('CountriesCtrl', ['Country', 'action','$scope', function (Country
       ctrl.save = Country.create;
     });
 
-    // Для паттерна '/posts/:id/edit'
     action('edit', function (params){
       ctrl.country = Country.edit({id: params.id});
-      // Аналогичное присваивание для каллбека обновления
       ctrl.save = Country.update;
     })
 
-    // Общий код. Вызовется для двух методов edit и new.
     action(['edit', 'new'], function(){
       //
     })
@@ -153,10 +147,8 @@ app.controller('CountriesCtrl', ['Country', 'action','$scope', function (Country
       }
     })
 
-    // Так же внутри ресурса routes.rb можно создать свой кастомный метод. Вызовется для: '/posts/some_method'
-    action('some_method', function(){
+    /action('some_method', function(){
       //
     })
 
-    // etc
   }])

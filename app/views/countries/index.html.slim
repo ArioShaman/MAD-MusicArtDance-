@@ -23,6 +23,11 @@ div#main
             div.audio-cont
               div.cover 
                 img ng-src="{{country.cover}}"
+                div ng-if="pauseBtn == false"
+                  div.play.splay-img#play ng-click="play(country.url, country.sing_name)" 
+                div ng-if="pauseBtn == true"
+                  div.play.pause-btn#pause ng-click="pause(country.url)"
+                  
 
               div.audio-inf 
                 div.autor
@@ -31,11 +36,8 @@ div#main
                 div.sing-name-bl
                   div "{{country.sing_name}}"
                 
-                <div class="sing" id="{{country.id}}">
-                    div.play#play ng-click="play(country.url, country.sing_name)" Play
-                    div.play#pause ng-click="pause(country.url)" Pause
-                    div.pause#pause Pause
-                    div#slider2
+                <div class="sing">
+                  <input id="show" type="range" ng-model="ctrl.line" ng-change="linebar($element.target)" value="0" max="{{song.duration}}">
                 </div>
             div.audio-cont
             div.audio-cont
