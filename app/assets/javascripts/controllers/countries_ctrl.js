@@ -81,32 +81,31 @@ app.controller('CountriesCtrl', ['Country', 'action','$scope', function (Country
       $scope.pauseBtn = false;
 
       $scope.play = function(url,singName){
-        console.log(singName);
+        var dur;
         if(sing != singName){
           $scope.song.src = url;
-          $scope.song.controls = true
-          $scope.song.play();
           sing = singName;
-          //$scope.song.addEventListener('loadedmetadata', function() {
-            //console.log("Playing " + $scope.song.src + ", for: " + $scope.song.duration + "seconds.");
-            //$scope.long.dur = $scope.song.duration;
-            //console.log($scope.song.duration);
-          //});
-          //$('#show').attr('max') = $scope.song.duration;
-        }else{
           $scope.song.play();
-        };
-        console.log($scope.song.duration);
-        console.log('play');
-        $scope.pauseBtn = true;
+          console.log('play');
+          $scope.pauseBtn = true;
+          $scope.song.addEventListener('loadedmetadata', function() {
+    
+            console.log($scope.song.duration);
+            //$('#show').attr("max") = $('#show').attr("max") + 10;
+          });
+          
+        }else{
+        
+          $scope.song.play();
+          console.log('play');
+          $scope.pauseBtn = true;
+        }
       };
 
       $scope.pause = function(url){
-        console.log($scope.song.duration);
         console.log('pause');
         $scope.song.pause();
         $scope.pauseBtn = false;
-        console.log($scope.song.duration);
       };
 
       ctrl.line;
