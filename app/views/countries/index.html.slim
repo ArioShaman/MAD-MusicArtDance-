@@ -24,7 +24,7 @@ div#main
               div.cover 
                 img ng-src="{{country.cover}}"
                 div ng-if="pauseBtn == false"
-                  div.play.splay-img#play ng-click="play(country.url, country.sing_name)" 
+                  div.play.play-btn#play ng-click="play(country.url, country.sing_name)" 
                 div ng-if="pauseBtn == true"
                   div.play.pause-btn#pause ng-click="pause(country.url)"
                   

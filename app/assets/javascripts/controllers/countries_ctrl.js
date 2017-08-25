@@ -1,4 +1,4 @@
-app.controller('CountriesCtrl', ['Country', 'action','$scope', function (Country, action, $scope) {
+app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', function (Country, action,$timeout, $scope) {
     var ctrl = this;
     action('index', function(){
       $scope.countries = Country.query();
@@ -83,23 +83,29 @@ app.controller('CountriesCtrl', ['Country', 'action','$scope', function (Country
       $scope.play = function(url,singName){
         var dur;
         if(sing != singName){
+          //$scope.song = $scope.$apply.song;
           $scope.song.src = url;
           sing = singName;
-          $scope.song.play();
-          console.log('play');
-          $scope.pauseBtn = true;
+          $scope.$evalAsync(function() {
+              $scope.song.src = url;
+            },$scope.song);
+          
+          
           $scope.song.addEventListener('loadedmetadata', function() {
-    
-            console.log($scope.song.duration);
+            $scope.song.play();
+            console.log('play');
+            console.log('ready ',$scope.song.duration);
+            $timeout(10);
             //$('#show').attr("max") = $('#show').attr("max") + 10;
           });
-          
+          $scope.pauseBtn = true;
         }else{
         
           $scope.song.play();
           console.log('play');
           $scope.pauseBtn = true;
-        }
+        };
+        console.log($scope.song.duration);
       };
 
       $scope.pause = function(url){
