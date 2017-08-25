@@ -1,6 +1,9 @@
 app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', function (Country, action,$timeout, $scope) {
     var ctrl = this;
     action('index', function(){
+      //Да я зна, что функционал писать в контроллере это плохо,
+      //но еще отдельно использовать фабрику мне не по душе
+      //Где же тогда концепция единого кода?
       $scope.countries = Country.query();
       console.log($scope.countries);
       
@@ -63,6 +66,7 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
           slide: function( event, ui ) {
               $( "#contentSlider" ).html( ui.value );//При изменении значения ползунка заполняем элемент с id contentSlider
           }
+          //побаловаться со стилями а то видит калично
       });
 
       $scope.click = false;
@@ -84,7 +88,7 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
         var dur;
         if(sing != singName){
           //$scope.song = $scope.$apply.song;
-          $scope.song.src = url;
+          $scope.song.src = url;//лучше чем создавать новое аудио я придумал ток менять ссылку на песню, не баг, а фича
           sing = singName;
           $scope.$evalAsync(function() {
               $scope.song.src = url;
@@ -96,7 +100,9 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
             console.log('play');
             console.log('ready ',$scope.song.duration);
             $timeout(10);
-            //$('#show').attr("max") = $('#show').attr("max") + 10;
+            //Когда я писал эту функцию,чтобы работала без бага. 
+            //Только Бог и я понимали, что он означает. 
+            //Теперь понимает только Бог.
           });
           $scope.pauseBtn = true;
         }else{
@@ -106,6 +112,7 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
           $scope.pauseBtn = true;
         };
         console.log($scope.song.duration);
+        
       };
 
       $scope.pause = function(url){
