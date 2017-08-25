@@ -55,10 +55,10 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
       });
       
       $( "#slider" ).slider({
-        value : 2017,//Значение, которое будет выставлено слайдеру при загрузке
-        min : 1964,//Минимально возможное значение на ползунке
-        max : 2017,//Максимально возможное значение на ползунке
-        step : 1,//Шаг, с которым будет двигаться ползунок
+        value : 2017,
+        min : 1964,
+        max : 2017,
+        step : 1,
         create: function( event, ui ) {
           val = $( "#slider" ).slider("value");//При создании слайдера, получаем его значение в перемен. val
             $( "#contentSlider" ).html( val );//Заполняем этим значением элемент с id contentSlider
@@ -94,14 +94,14 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
               $scope.song.src = url;
             },$scope.song);
           
-          
+          //Если ты изменишь что-то в этом коде, небеса обрушатся на твою голову!
           $scope.song.addEventListener('loadedmetadata', function() {
             $scope.song.play();
             console.log('play');
             console.log('ready ',$scope.song.duration);
             $timeout(10);
             //Когда я писал эту функцию,чтобы работала без бага. 
-            //Только Бог и я понимали, что он означает. 
+            //Только Бог и я понимали, что онa означает. 
             //Теперь понимает только Бог.
           });
           $scope.pauseBtn = true;
@@ -114,7 +114,12 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
         console.log($scope.song.duration);
         
       };
-
+      ctrl.curTime;
+      $scope.song.addEventListener('timeupdate', function() {
+        $scope.$apply(function() {
+          ctrl.curTime = Math.round($scope.song.currentTime);
+        });
+      });
       $scope.pause = function(url){
         console.log('pause');
         $scope.song.pause();
@@ -123,9 +128,11 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
 
       ctrl.line;
       $scope.linebar = function(item){
-        //console.log(ctrl.line);
+        $scope.song.currentTime = ctrl.curTime;
         //console.log($('#show').attr('max'));
         };
+
+      //var v = document.getElementsByTagName("video")[0];
     });
 
     // Вызовется для паттерна '/posts/:id'

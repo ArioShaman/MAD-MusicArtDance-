@@ -9,7 +9,7 @@ div#main
 
         div.select-bl
           div.sel Вы выбрали :
-          div.sel2 ng-if="selectIs == false" None
+          div.sel2 ng-if="selectIs == false" ng-bind="ctrl.curTime" None
           div.sel ng-if="selectIs == true" ng-bind="selectCont"
 
         div.years-cont
@@ -36,8 +36,8 @@ div#main
                   div "{{country.sing_name}}"
                 
                 <div class="sing">
-                  <input id="show" type="range" ng-model="ctrl.line" ng-change="linebar($element.target)" value="" min="0" max="{{song.duration}}">
-                  div.sel2 ng-bind="song.currentTime"
+                  <input id="show" type="range" ng-model="ctrl.curTime" ng-change="linebar($element.target)" value="0"  max="{{song.duration}}">
+                  div.sel2
                 </div>
             div.audio-cont
             div.audio-cont
