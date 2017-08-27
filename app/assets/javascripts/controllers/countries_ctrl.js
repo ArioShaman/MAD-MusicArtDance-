@@ -138,6 +138,22 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
           $('.mute-btn').toggleClass('mute-active');
         }
       };
+      $scope.showTime = function(time){
+        var minutes = Math.floor(time / 60);
+        var seconds = time - minutes * 60;
+        if(seconds < 10){
+          var strSec = '0'+seconds;
+        }else{
+          var strSec = seconds;
+        };
+        if(minutes < 10){
+          var strMin = '0'+minutes;
+        }else{
+          var strMin = minutes;
+        };
+        var string = ''+strMin+':'+strSec+'';
+        return string;
+      }
       //var v = document.getElementsByTagName("video")[0];
     });
 

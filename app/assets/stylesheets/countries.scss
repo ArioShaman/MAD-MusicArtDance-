@@ -199,11 +199,21 @@
 					.emp{
 
 					}
+
 					.sing-btns{
-						margin-left: 170px;
+						margin-left: 160px;
 						height: 25px;
-						width: 90px;
+						width: 100px;
+						background-size: grey;
 						margin-top: -5px;
+					}
+					.times{
+						display: inline-block;
+						font-size: 14px;
+						padding-top: 3px;
+						color: white !important;
+						float: left;
+						text-decoration: none !important;
 					}
 					.repeat-btn{
 						background:url('repeat2.svg') no-repeat;
@@ -211,6 +221,8 @@
 						height: 25px;
 						float: left;
 						background-position: 0px 0px; 
+						display: inline-block;
+						margin-left: 5px;
 					}
 					.repeat-btn:hover{
 						background:url('repeat2.svg') no-repeat;
@@ -232,7 +244,7 @@
 						height: 25px;
 						float: left;
 						background-position: 0px 0px; 
-						margin-left: 5px;
+						margin-left: 3px;
 					}
 					.mute-btn:hover{
 						background:url('mute.svg') no-repeat;
