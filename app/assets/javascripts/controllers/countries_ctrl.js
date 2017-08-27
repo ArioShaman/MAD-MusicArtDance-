@@ -66,7 +66,7 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
           slide: function( event, ui ) {
               $( "#contentSlider" ).html( ui.value );//При изменении значения ползунка заполняем элемент с id contentSlider
           }
-          //побаловаться со стилями а то видит калично
+          //побаловаться со стилями а то выглядит калично
       });
 
       $scope.click = false;
@@ -78,7 +78,6 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
         };
         $('.hid').toggleClass('hidden');
         $('.pause').toggleClass('un-pause');
-        console.log('click');
       };
       $scope.song = new Audio();
       $scope.sing;
@@ -98,8 +97,6 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
           //Если ты изменишь что-то в этом коде, небеса обрушатся на твою голову!
           $scope.song.addEventListener('loadedmetadata', function() {
             $scope.song.play();
-            console.log('play');
-            console.log('ready ',$scope.song.duration);
             $timeout(10);
             //Когда я писал эту функцию,чтобы работала без бага. 
             //Только Бог и я понимали, что онa означает. 
@@ -109,10 +106,8 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
         }else{
         
           $scope.song.play();
-          console.log('play');
           $scope.pauseBtn = true;
         };
-        console.log($scope.song.duration);
         
       };
       ctrl.curTime;
@@ -122,7 +117,6 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
         });
       });
       $scope.pause = function(url){
-        console.log('pause');
         $scope.song.pause();
         $scope.pauseBtn = false;
       };
@@ -130,9 +124,14 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
       ctrl.line;
       $scope.linebar = function(item){
         $scope.song.currentTime = ctrl.curTime;
-        //console.log($('#show').attr('max'));
-        };
+      };
 
+      $scope.repeat = function(){
+        $scope.song.loop = !$scope.song.loop
+      };
+      $scope.mute = function(){
+        $scope.song.muted = !$scope.song.muted;
+      };
       //var v = document.getElementsByTagName("video")[0];
     });
 
