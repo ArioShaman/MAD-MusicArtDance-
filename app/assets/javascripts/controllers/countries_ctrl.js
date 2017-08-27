@@ -81,15 +81,16 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
         console.log('click');
       };
       $scope.song = new Audio();
-      var sing;
+      $scope.sing;
       $scope.pauseBtn = false;
 
       $scope.play = function(url,singName){
         var dur;
-        if(sing != singName){
+        if($scope.sing != singName){
+          $scope.song.pause();
           //$scope.song = $scope.$apply.song;
           $scope.song.src = url;//лучше чем создавать новое аудио я придумал ток менять ссылку на песню, не баг, а фича
-          sing = singName;
+          $scope.sing = singName;
           $scope.$evalAsync(function() {
               $scope.song.src = url;
             },$scope.song);
