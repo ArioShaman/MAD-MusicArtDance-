@@ -39,8 +39,8 @@ div#main
                 <div ng-if="sing == country.sing_name" class="sing">
                   <input id="show" type="range" ng-model="ctrl.curTime" ng-change="linebar($element.target)" value="0"  max="{{song.duration}}">
                   div.sing-btns
-                    a ng-click="repeat()" Repeat
-                    a ng-click="mute()" Mute
+                    a.repeat-btn ng-click="repeat()"
+                    a.mute-btn ng-click="mute()"
                 </div>
             
     div.l-slide-btn

@@ -128,9 +128,15 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
 
       $scope.repeat = function(){
         $scope.song.loop = !$scope.song.loop
+        if($scope.song.loop == true){
+          $('.repeat-btn').toggleClass('repeat-active');
+        }
       };
       $scope.mute = function(){
         $scope.song.muted = !$scope.song.muted;
+        if($scope.song.muted = true){
+          $('.mute-btn').toggleClass('mute-active');
+        }
       };
       //var v = document.getElementsByTagName("video")[0];
     });
