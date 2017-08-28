@@ -7,7 +7,7 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
       $scope.countries = Country.query();
       console.log($scope.countries);
       
-      $scope.selectCont;
+      $scope.selectCont = "Not choosing";
       $scope.selectIs = false;
       var map = AmCharts.makeChart("mapdiv", {
         "type": "map",
@@ -62,9 +62,13 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
         create: function( event, ui ) {
           val = $( "#slider" ).slider("value");//При создании слайдера, получаем его значение в перемен. val
             $( "#contentSlider" ).html( val );//Заполняем этим значением элемент с id contentSlider
+            $scope.selYear = val;
           },
           slide: function( event, ui ) {
-              $( "#contentSlider" ).html( ui.value );//При изменении значения ползунка заполняем элемент с id contentSlider
+            $( "#contentSlider" ).html( ui.value );//При изменении значения ползунка заполняем элемент с id contentSlider
+            $scope.$apply(function() {
+              $scope.selYear = ui.value;
+            });
           }
           //побаловаться со стилями а то выглядит калично
       });

@@ -9,8 +9,7 @@ div#main
 
         div.select-bl
           div.sel Вы выбрали :
-          div.sel2 ng-if="selectIs == false" None
-          div.sel ng-if="selectIs == true" ng-bind="selectCont"
+          div.sel ng-bind="selectCont"
 
         div.years-cont
           div#slider
@@ -18,7 +17,7 @@ div#main
           
 
         div.playlist-cont#scroll
-          div ng-repeat="country in countries"
+          div ng-repeat="country in (filtered = (countries|filter:{country:selectCont, year:selYear}))"
             div.audio-cont
               div.cover 
                 img ng-src="{{country.cover}}"
