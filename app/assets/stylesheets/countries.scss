@@ -58,7 +58,12 @@
 			width: 100%;
 			background-color: rgba(0,0,0,0.5);
 		}
-		
+		.inf-log-expend{
+			height: 150px;
+		}
+		.inf-reg-expend{
+			height: 250px;
+		}
 		.select-bl{
 			color: white;
 			font-size: 14px;
@@ -319,11 +324,61 @@
 			font-size: 21px;
 			margin-left: 5px;
 			text-align: center;
-			width: 160px;
+			width: 250px;
 			color: white;
 			font-weight: bolder;
 			display: inline-block;
 			position: absolute;
+		}
+		.log-btns{
+			width: 250px;
+			height: 25px;
+			top: 40px;
+			position: absolute;
+			margin-left: 75px;
+
+		}
+		.log-btn{
+			height: 100%;
+			width: 85px;
+			position: relative;
+			background-color: orange;
+			color: white;
+			font-weight: bold;
+			display: inline-block;
+			text-align: center;
+			padding-top: 3px;
+			transition: 0.5s;
+		}
+		.log-btn:hover,.log-btn:focus{
+			background-color: #CD0074;
+			cursor: pointer;
+		}
+		.lefter{
+			margin-left: 40px;
+		}
+		.form-log{
+			height: auto;
+			width: 310px;
+			margin-top: 5px;
+			margin-left: 10px;
+		}
+		.group-inps{
+			margin-top: 5px;
+			width: 270px;
+			margin-left: 20px;
+			height: 25px;
+			position: relative;
+		}
+		.f-field{
+			width: 130px;
+			display: inline-block;
+			height: 100%;
+			border-radius: 0px;
+			background-color: white;
+		}
+		.f-sec{
+			margin-left: 10px;
 		}
 	}
 	

@@ -14,10 +14,11 @@
 = require jquery-ui
 = require worldLow
 = require_tree ./controllers
+= require devise
 */
 
 
-var app = angular.module("app", ['ui.router', 'oxymoron']);
+var app = angular.module("app", ['ui.router', 'oxymoron','Devise']);
 
 app.config(['$stateProvider', function ($stateProvider) {
   $stateProvider.rails()

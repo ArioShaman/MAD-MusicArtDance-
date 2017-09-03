@@ -1,4 +1,4 @@
-app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', function (Country, action,$timeout, $scope) {
+app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope','Auth', function (Country, action,$timeout, $scope,Auth) {
     var ctrl = this;
     action('index', function(){
       //Да я зна, что функционал писать в контроллере это плохо,
@@ -7,6 +7,9 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope', functi
       $scope.countries = Country.query();
       console.log($scope.countries);
       
+      console.log(Auth.isAuthenticated());
+      console.log(Auth._currentUser);
+
       $scope.selectCont = "Not choosing";
       $scope.selectIs = false;
       var map = AmCharts.makeChart("mapdiv", {

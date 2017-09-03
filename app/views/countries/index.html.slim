@@ -3,9 +3,22 @@ div#main
   div.left_bar
     div.in-left
       div.left-cont
-        div.user-inf-cont
+        div.user-inf-cont ng-controller="DeviseSessionsCtrl"
           div.ava-cont
-          div.name Guest
+          div.name ng-bind="current_user"
+          div ng-if="auth == false"
+            div.log-btns
+              div.log-btn.lefter ng-click="log_click()" Log In
+              div.log-btn ng-click="reg_click()" Register
+
+            div ng-if="clickLog == true"
+              div.form-log
+                form ng-submit="login()"
+                  div.group-inps
+                    input.f-field type="email" ng-model="user.email"
+                    input.f-field.f-sec type="password" ng-model="user.password"
+
+
 
         div.select-bl
           div.sel Вы выбрали :
@@ -54,6 +67,7 @@ div#main
 
     div.selected
       div ng-bind="selectCont"
+      
   
   
 
