@@ -1,19 +1,17 @@
 app.controller('DeviseSessionsCtrl',['$cookies','$interval','$http','$scope','Auth',function($cookies,$interval,$http,$scope, Auth){
 	var ctrl = this;
-	if($cookies.get('auth')){
+	if($cookies.get('auth' == "true")){
 		$scope.auth = true;
 		$scope.current_user = $cookies.get('current_user');
 	}else{
 		$scope.auth = false;
 		$scope.current_user = 'Guest';
 	}
-	//if($scope.auth == false){
-	//	$scope.current_user = 'Guest';
-	//}else{
-	//	$scope.current_user = Auth._currentUser;
-	//}
-	console.log(Auth._currentUser);
-	console.log($cookies.getAll());
+	//$scope.auth = $cookies.get('auth');
+	//console.log($scope.auth == "false");
+	//$scope.current_user =$cookies.get('current_user');
+	//console.log($scope.current_user);
+
 	$scope.clickLog = false;
 	$scope.clickReg = false;
 	$scope.isErr = false;
@@ -47,6 +45,8 @@ app.controller('DeviseSessionsCtrl',['$cookies','$interval','$http','$scope','Au
     $scope.register = function(){
 		Auth.register(credentials, config).then(function(registeredUser) {
 	       $scope.current_user = registeredUser['username'];
+	       $cookies.put('auth',true);
+	    	$cookies.put('current_user',$scope.current_user);
 	    }, function(error) {
 	    	}
 	    );
@@ -84,7 +84,7 @@ app.controller('DeviseSessionsCtrl',['$cookies','$interval','$http','$scope','Au
         	$scope.auth = false;
         	$scope.current_user = 'Guest';
         	$cookies.put('current_user','Guest')
-            $cookies.put('auth',Auth.isAuthenticated());
+            $cookies.put('auth',false);
         });
 	}
 }])
