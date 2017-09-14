@@ -49,17 +49,19 @@
 	}
 	.open{
 		width: 350px;
+
 		.left-cont{
 			width: 335px;
 			opacity: 1;
 		}
 		.user-inf-cont{
-			height: 75px;
+			height: auto;
+			padding-bottom: 10px;
 			width: 100%;
 			background-color: rgba(0,0,0,0.5);
 		}
 		.inf-log-expend{
-			height: 150px;
+			height: auto;
 		}
 		.inf-reg-expend{
 			height: 250px;
@@ -364,7 +366,7 @@
 			margin-left: 10px;
 		}
 		.group-inps{
-			margin-top: 5px;
+			margin-top: 15px;
 			width: 270px;
 			margin-left: 20px;
 			height: 25px;
@@ -379,6 +381,41 @@
 		}
 		.f-sec{
 			margin-left: 10px;
+		}
+		.all-w{
+			width: 100%!important;
+		}
+		.subm{
+			width: 100px;
+			margin-left: 85px;
+			height: 100%;
+			color: white;
+			background-color: orange;
+			border: 0px solid white;
+		}
+		.logout{
+			width: 100px;
+			margin-left: 60px;
+			height: 100%;
+			color: white;
+			text-align: center;
+			padding-top: 3px;
+			background-color: orange;
+			border: 0px solid white;
+			cursor: pointer;
+		}
+		.errors{
+			height: auto;
+			width: 305px;
+			margin-left: 15px;
+			margin-top: 5px;
+			background-color: #FE5295;
+			color: #2B1328;
+			font-size: 13px;
+			font-weight: 600;
+			padding: 10px;
+			border-radius: 5px;
+			box-shadow: 0 0 15px rgba(0,0,0,0.5); 
 		}
 	}
 	

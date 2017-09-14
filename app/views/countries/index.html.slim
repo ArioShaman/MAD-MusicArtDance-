@@ -11,12 +11,33 @@ div#main
               div.log-btn.lefter ng-click="log_click()" Log In
               div.log-btn ng-click="reg_click()" Register
 
+            div ng-if="isErr == true"
+              div.errors ng-bind="error"
+
             div ng-if="clickLog == true"
               div.form-log
                 form ng-submit="login()"
                   div.group-inps
-                    input.f-field type="email" ng-model="user.email"
-                    input.f-field.f-sec type="password" ng-model="user.password"
+                    input.f-field type="email" ng-model="user.email" placeholder="Email"
+                    input.f-field.f-sec type="password" ng-model="user.password" placeholder="Password"
+                  div.group-inps
+                    input.subm type="submit" value="Log In"
+
+            div ng-if="clickReg == true"
+              div.form-log
+                form ng-submit="register()"
+                  div.group-inps
+                    input.f-field type="username" ng-model="user.username" placeholder="Username"
+
+                    input.f-field.f-sec type="email" ng-model="user.email" placeholder="Email"
+                  div.group-inps
+                    input.f-field.all-w type="password" ng-model="user.password" placeholder="Password"
+                  div.group-inps
+                    input.subm type="submit" value="Register"
+
+          div ng-if="auth == true"
+            div.log-btns
+              div.logout ng-click="logout()" LogOut
 
 
 
@@ -62,13 +83,4 @@ div#main
   div.my-container
     div.empty
       div#mapdiv
-        
-
-
-    div.selected
-      div ng-bind="selectCont"
-      
   
-  
-
-

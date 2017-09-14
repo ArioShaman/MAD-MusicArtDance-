@@ -1,14 +1,12 @@
 app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope','Auth', function (Country, action,$timeout, $scope,Auth) {
     var ctrl = this;
     action('index', function(){
-      //Да я зна, что функционал писать в контроллере это плохо,
+      //Да я знаю, что функционал писать в контроллере это плохо,
       //но еще отдельно использовать фабрику мне не по душе
       //Где же тогда концепция единого кода?
+
       $scope.countries = Country.query();
-      console.log($scope.countries);
-      
-      console.log(Auth.isAuthenticated());
-      console.log(Auth._currentUser);
+
 
       $scope.selectCont = "Not choosing";
       $scope.selectIs = false;
@@ -32,7 +30,6 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope','Auth',
         listeners: [ {
         "event": "clickMapObject",
           "method": function( event ) {
-            console.log(event.mapObject.title);
             $scope.$apply(function() {
               $scope.selectCont = event.mapObject.title;
               $scope.selectIs = true;
@@ -41,11 +38,6 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope','Auth',
         }],
 
         smallMap: {}
-      });
-
-
-      $('#mapdiv').click(function(event){
-        console.log($scope.selectCont);
       });
 
       
@@ -81,7 +73,7 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope','Auth',
       $scope.clicker = function(){
         $scope.click = !$scope.click;
         if($scope.click == true){
-          console.log($('.m-hidden'));
+          //console.log($('.m-hidden'));
         };
         $('.hid').toggleClass('hidden');
         $('.pause').toggleClass('un-pause');
@@ -195,7 +187,7 @@ app.controller('CountriesCtrl', ['Country', 'action','$timeout','$scope','Auth',
       }
     })
 
-    /action('some_method', function(){
+    action('some_method', function(){
       //
     })
 
