@@ -1,5 +1,6 @@
 app.controller('DeviseSessionsCtrl',['$cookies','$interval','$http','$scope','Auth',function($cookies,$interval,$http,$scope, Auth){
 	var ctrl = this;
+	ctrl.user;
 	if($cookies.get('auth' == "true")){
 		$scope.auth = true;
 		$scope.current_user = $cookies.get('current_user');
@@ -56,12 +57,12 @@ app.controller('DeviseSessionsCtrl',['$cookies','$interval','$http','$scope','Au
 	    });
 	}
 
-	$scope.login = function(){
-	    Auth.login(credentials, config).then(function(user) {
+	$scope.login = function(user){
+		//console.log(user);
+	    Auth.login(user, config).then(function(user) {
             $scope.current_user = Auth._currentUser['username'];
             $cookies.put('current_user',$scope.current_user)
             $cookies.put('auth',Auth.isAuthenticated());
-            console.log($cookies.getAll());
         }, function(error) {
         });
 

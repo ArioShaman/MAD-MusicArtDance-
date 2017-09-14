@@ -16,10 +16,10 @@ div#main
 
             div ng-if="clickLog == true"
               div.form-log
-                form ng-submit="login()"
+                form ng-submit="login(ctrl.user)"
                   div.group-inps
-                    input.f-field type="email" ng-model="user.email" ng-change="change()" placeholder="Email"
-                    input.f-field.f-sec type="password" ng-model="user.password" placeholder="Password"
+                    input.f-field type="email" ng-model="ctrl.user.email" ng-change="change()" placeholder="Email"
+                    input.f-field.f-sec type="password" ng-model="ctrl.user.password" placeholder="Password"
                   div.group-inps
                     input.subm type="submit" value="Log In"
 
